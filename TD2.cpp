@@ -4,9 +4,35 @@
 #include <math.h>
 #include <random>
 #include "polygone.h"
+#include <fstream>
+#include <cmath>
+#include "complexe.h"
 
 using namespace std; 
 
+
+
+
+ostream& operator<< (ostream& out, const Complexe& nombre)
+{
+    cout << nombre.re << " " << nombre.im << endl;
+}
+
+Complexe operator+ (Complexe a, Complexe b)
+{
+    return a += b; 
+}
+
+
+Complexe operator* (double scalaire, Complexe a)
+{
+    return Complexe(scalaire * a.re, scalaire * a.im); 
+}
+
+Complexe operator* (Complexe a, double scalaire)
+{
+    return scalaire * a; 
+}
 
 
 
@@ -34,6 +60,23 @@ void le_plus_loin(vector<Point> tab)
 int main()
 {
 
+
+
+    Complexe a = Complexe(1.2, 3.4); 
+    Complexe b = Complexe(2.3, 5.1); 
+
+    // cout << (a+b).re << " " << (a+b).im << endl; 
+    Complexe c = a+b; 
+    cout << c.re << " " << c.im << endl;
+
+    Complexe d = -a; 
+    cout << d.re << endl; 
+
+    cout << d << endl; 
+
+    return 0; 
+
+
     // Point p; 
     // p.init(1.2 , 3.4); 
 
@@ -51,13 +94,28 @@ int main()
     // le_plus_loin(tab); 
 
 
-    double taille = sqrt(2);
-    Polygone carre; 
+    // double taille = sqrt(2);
+    // Polygone carre; 
 
-    carre.init_regulier(4, taille); 
-    cout << carre.perimetre() << endl; 
+    // carre.init_regulier(4, taille); 
+    // cout << carre.perimetre() << endl; 
 
 
+    // int n = 100; 
 
-    return 0; 
+    // fstream f; 
+    // f.open("perimetres.txt", ios::out); 
+
+    // double taille = double(1)/2 ; 
+    // for (int i = 3; i<n; i++)
+    // {
+    //     Polygone poly; 
+    //     poly.init_regulier(i, taille); 
+    //     f << poly.perimetre() << endl; 
+    // }
+
+    // f.close(); 
+
+
+    // return 0; 
 }

@@ -19,7 +19,7 @@ all: TD2
 # Cible TD2, compilation de tous les fichiers .cpp du projet TD2, à partir des fichiers objets .o
 # Ensuite l'édition de liens, ie la récupération de toutes les composantes que le programme utilise, est faite
 # Enfin on éxecute directement le programme TD2
-TD2: TD2.o point.o polygone.o
+TD2: TD2.o point.o polygone.o complexe.o
 	$(CPP) -o TD2 $^ $(LDFLAGS)
 	./TD2
 
@@ -27,11 +27,19 @@ TD2: TD2.o point.o polygone.o
 
 
 #Compilation séparée de TD2.cpp dans le fichier TD2.o
-TD2.o: TD2.cpp point.h polygone.h
+TD2.o: TD2.cpp point.h polygone.h complexe.h
 	$(CPP) -o $@ -c $< $(CPPFLAGS)
 
 # Compilation séparée (avec -c dans le fichier point.o avec -o) d'une classe en un fichier objet 
-point.o: point.cpp point.h polygone.h
+point.o: point.cpp point.h 
+	$(CPP) -o $@ -c $< $(CPPFLAGS)
+
+
+polygone.o: polygone.cpp polygone.h point.h point.cpp
+	$(CPP) -o $@ -c $< $(CPPFLAGS)
+
+
+complexe.o: complexe.cpp complexe.h
 	$(CPP) -o $@ -c $< $(CPPFLAGS)
 
 

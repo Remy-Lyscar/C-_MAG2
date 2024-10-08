@@ -17,6 +17,7 @@ class Polygone
     void affiche_sommets(); 
     double perimetre(); 
 
+
 }; 
 
 
