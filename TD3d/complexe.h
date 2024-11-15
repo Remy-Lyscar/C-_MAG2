@@ -18,7 +18,7 @@ class Complexe
     public: 
 
     // Constructeurs 
-    Complexe(); // consttucteur par défaut
+    Complexe(); // constructeur par défaut
     Complexe(double re_, double im_);
     Complexe(double re_); 
 
@@ -28,7 +28,7 @@ class Complexe
     // Opérateurs
     Complexe& operator+= (Complexe b); 
     Complexe operator- ( ); 
-    Complexe operator-= (const Complexe other); 
+    Complexe& operator-= (const Complexe other); 
     Complexe operator* (const Complexe other); 
 
 

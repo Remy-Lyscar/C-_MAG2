@@ -42,13 +42,14 @@ Complexe::Complexe(double re_, double im_)
 {
     this -> re = re_; 
     (*this).im =im_; 
-    sync_cart_to_polar; 
+    sync_cart_to_polar(); 
     
 }; 
 
 Complexe::Complexe(double re_)
 {
     Complexe(re_, 0); 
+    sync_cart_to_polar(); 
 }; 
 
 
@@ -69,10 +70,19 @@ Complexe Complexe::operator- ()
     return *this; 
 }; 
 
-Complexe Complexe::operator-= (const Complexe other)
+Complexe& Complexe::operator-= (const Complexe other)
 {
     this -> re -= other.re; 
     this -> im -= other.im; 
+    return *this; 
+}
+
+
+Complexe Complexe::operator* (const Complexe other)
+{
+    this -> r *= other.re; 
+    this -> theta += other.theta; 
+    sync_polar_to_cart(); 
     return *this; 
 }
 
@@ -82,13 +92,13 @@ Complexe Complexe::operator-= (const Complexe other)
 void Complexe::real (double re_)
 {
     this -> re = re_; 
-    sync_cart_to_polar; 
+    sync_cart_to_polar(); 
 }; 
 
 void Complexe::imag (double im_)
 {
     this -> im = im_; 
-    sync_cart_to_polar; 
+    sync_cart_to_polar(); 
 }; 
 
 
@@ -107,5 +117,5 @@ void Complexe::polar (double r_, double theta_)
 {
     this -> r = r_; 
     this -> theta = theta_; 
-    sync_polar_to_cart; 
+    sync_polar_to_cart(); 
 }

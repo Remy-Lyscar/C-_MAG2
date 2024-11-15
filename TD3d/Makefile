@@ -17,17 +17,20 @@ all: TD3
 
 
 # compilation finale (avec édition de liens)
-TD3: TD3.o complexe.o
+TD3: TD3.o complexe.o reseau.o
 	$(CPP) -o TD3 $^ $(LDFLAGS)
 	./TD3
 
 
 # compilation séparée
-TD3.o: TD3.cpp complexe.h
+TD3.o: TD3.cpp complexe.h reseau.h 
 	$(CPP) -o $@ -c $< $(CPPFLAGS)
 
 
 complexe.o: complexe.cpp complexe.h
+	$(CPP) -o $@ -c $< $(CPPFLAGS)
+
+reseau.o: reseau.cpp reseau.h
 	$(CPP) -o $@ -c $< $(CPPFLAGS)
 
 
