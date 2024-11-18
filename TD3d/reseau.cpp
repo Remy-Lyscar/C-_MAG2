@@ -12,7 +12,8 @@
 #include "reseau.h"
 
 using namespace std; 
- 
+
+
 
 // Constructors 
 
@@ -45,13 +46,10 @@ Reseau::Reseau(const Reseau& other)
 
 
 Reseau::Reseau(int nx_, int ny_)
-    :nx(nx_), ny(ny_)
+    :nx(nx_), ny(ny_), gen(rd), dist(0,1)
+
+    // crée un réseau dont les sites ont une valeur aléatoire +/- 1
 {
-
-    random_device rd; 
-    mt19937 gen(rd());
-
-    uniform_int_distribution<int> dist(0,1); 
     int rd_binary; 
 
     for (int k = 0; k<(nx*ny); k++)
@@ -93,23 +91,23 @@ Reseau::Site Reseau::site_xy (int x, int y) const
     return site;
 }
 
-int Reseau::operator[] (Reseau::Site s) const
+int Reseau::operator[] (Site s) const
 {
     return reseau[s.index]; 
 }
 
-int& Reseau::operator[] (Reseau::Site s)
+int& Reseau::operator[] (Site s)
 {
     return reseau[s.index]; 
 }
 
 
-array<Reseau::Site,4> Reseau::voisins (Reseau::Site s) const
+array<Reseau::Site,4> Reseau::voisins (Site s) const
 // We return a array of size 4, hence we assume we are not asking for a 
 // point at the border of the lattice
 // Anyway since we imposed periodic conditions we don't have any border effects 
 {
-    array<Reseau::Site, 4> tab = {site_xy(s.x -1, s.y), site_xy(s.x, s.y-1), site_xy(s.x, s.y+1), site_xy(s.x+1,s.y)}; 
+    array<Site, 4> tab = {site_xy(s.x -1, s.y), site_xy(s.x, s.y-1), site_xy(s.x, s.y+1), site_xy(s.x+1,s.y)}; 
     return tab; 
 
 }
@@ -153,4 +151,3 @@ void Reseau::affiche_console () const
         cout << "\n"; 
     }
 }
-

@@ -4,6 +4,7 @@
 
 #include<vector>
 #include<array>
+#include<random>
 
 using namespace std; 
 
@@ -12,6 +13,8 @@ class Reseau// On se fiche de la localisation précise d'un site, on veut juste 
 // accéder à ses voisins. On rend invisible la structure réelle du réseau
 // pour l'algorithme l'utilisant ! 
 {
+
+    public: 
 
     class Site 
     {
@@ -30,10 +33,16 @@ class Reseau// On se fiche de la localisation précise d'un site, on veut juste 
 
 
 
-    private: 
+    public: 
     vector<int> reseau; 
     int nx; 
     int ny; 
+
+    // distribution d'entiers aléatoires  
+    random_device rd;  // ex: température de mon CPU, ...
+    mt19937 gen;
+    uniform_int_distribution<int> dist;
+
 
     Site site_index (int index) const; 
 
@@ -64,14 +73,7 @@ class Reseau// On se fiche de la localisation précise d'un site, on veut juste 
 
     // Affichage
 
-    void affiche_console () const; // affichage textuel dans la console
-
-
-    // MCMC
-
-    double H (Reseau&, double);  
-    double proba_acceptation (Reseau&, Site); 
-    bool ising_metropolis_step(Reseau&, double, double, uniform_real_distribution<double>, mt19937 ); 
+    void affiche_console () const; // affichage textuel dans la console   
 
 
 }; 
