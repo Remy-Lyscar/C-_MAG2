@@ -31,7 +31,7 @@ Reseau::Reseau (int nx_, int ny_, int valeur_init)
         reseau.push_back(valeur_init); 
     }
 
-    cout << "Reseau " << nx << "x" << ny << " @ " << &reseau << endl; 
+    // cout << "Reseau " << nx << "x" << ny << " @ " << &reseau << endl; 
 }
 
 Reseau::Reseau(const Reseau& other)
@@ -41,12 +41,12 @@ Reseau::Reseau(const Reseau& other)
     {
         reseau.push_back(other.reseau[k]); 
     }
-    cout << "Reseau " << nx << "x" << ny << " @ " << &reseau << endl;
+    // cout << "Reseau " << nx << "x" << ny << " @ " << &reseau << endl;
 }
 
 
 Reseau::Reseau(int nx_, int ny_)
-    :nx(nx_), ny(ny_), gen(rd), dist(0,1)
+    :nx(nx_), ny(ny_), gen(rd()), dist(0,1)
 
     // crée un réseau dont les sites ont une valeur aléatoire +/- 1
 {
@@ -57,7 +57,8 @@ Reseau::Reseau(int nx_, int ny_)
         rd_binary = dist(gen)*2 - 1; 
         reseau.push_back(rd_binary); 
     }
-    cout << "Reseau " << nx << "x" << ny << " @ " << &reseau << endl;
+    
+    // cout << "Reseau " << nx << "x" << ny << " @ " << &reseau << endl;
 }
 
 Reseau::Site Reseau::site_index (int index) const
