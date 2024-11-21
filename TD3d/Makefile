@@ -31,7 +31,7 @@ complexe.o: complexe.cpp complexe.h
 	$(CPP) -o $@ -c $< -Ofast -flto $(CPPFLAGS)
 
 reseau.o: reseau.cpp reseau.h
-	$(CPP) -o -$@ -c $< -Ofast -flto $(CPPFLAGS)
+	$(CPP) -o $@ -c $< -Ofast -flto $(CPPFLAGS)
 
 
 

@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 21 22:09:59 2024
+
+@author: remyl
+"""
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig, (ax1, ax2) = plt.subplots(2,1, figsize = (8,8), sharex=True)
+
+
+data = np.loadtxt('ising_magnetisation_energie.txt')
+steps = data[:,0]
+magnet = data[:,1]
+energie = data[:,2]
+
+ax1.plot(steps, magnet, alpha = 0.7)
+ax2.plot(steps, energie, alpha = 0.7)
+
+ax1.set_ylim(-1,1)
+ax1.set_ylabel('magnetisation')
+ax2.set_ylabel('energie interne')
+ax2.set_xlabel('nombre de pas de l\'algorithme')
